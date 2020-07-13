@@ -34,12 +34,12 @@ Não são obrigatórios, mas seria legal ter no seu projeto:
 - Arquitetura MVVM
 - Navigation Component
 
-### Considerações
-Dependencias utilizadas
-    * Retrofit 2 (Biblioteca de HTTP Client para Android)
-    * Lifecycle-viewmodel (Gerenciador de dados relacionados à IU considerando o ciclo de vida)
-    * Navigation-ui (Navegação entre telas em um aplicativo)
-    * Espresso (Realizar testes automatizados)
-    * Sugar (Persistência de dados no aplicativo)
-    * Glide (Gerenciador de mídia e carregar imagens da internet)
+## Dependencias utilizadas
+Dependencias utilizadas:
+  * Retrofit 2 (Biblioteca de HTTP Client para Android)
+  * Lifecycle-viewmodel (Gerenciador de dados relacionados à IU considerando o ciclo de vida)
+  * Navigation-ui (Navegação entre telas em um aplicativo)
+  * Espresso (Realizar testes automatizados)
+  * Sugar (Persistência de dados no aplicativo)
+  * Glide (Gerenciador de mídia e carregar imagens da internet)
 
