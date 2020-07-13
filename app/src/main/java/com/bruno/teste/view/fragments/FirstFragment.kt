@@ -51,6 +51,14 @@ class FirstFragment : BaseFragment() {
 
         viewModel = ViewModelProviders.of(requireActivity()).get(HomeViewModel::class.java)
 
+        viewModel.initConnectivity(requireContext())
+
+        viewModel.connectivityAvailable.observe(viewLifecycleOwner, Observer { isConnected ->
+            if(!isConnected){
+                Toast.makeText(requireContext(), "Sem Conexão com a internet", Toast.LENGTH_LONG).show()
+            }
+        })
+
         configureRecyclerView(view)
 
         return view

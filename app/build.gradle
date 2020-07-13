@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.bruno.teste"
-        minSdkVersion 20
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -87,5 +87,6 @@ dependencies {
     //Others
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:3.0.0'
 
 }
