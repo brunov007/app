@@ -8,10 +8,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bruno.teste.R
 import com.bruno.teste.core.data.models.Movie
 import com.bruno.teste.core.data.models.db.TB_Movie
 import com.bruno.teste.core.ui.BaseFragment
+import com.bruno.teste.core.ui.GridSpacingItemDecoration
+import com.bruno.teste.core.ui.VerticalItemDecoration
 import com.bruno.teste.core.utils.EspressoIdlingResource
 import com.bruno.teste.view.adapters.RecyclerViewAdapter
 import com.bruno.teste.viewmodel.HomeViewModel
@@ -24,8 +27,19 @@ import kotlin.collections.List
 
 class FirstFragment : BaseFragment() {
 
+    companion object{
+        const val SPAN_COUNT = 2
+    }
+
     private lateinit var viewModel: HomeViewModel
     private var adapter: RecyclerViewAdapter? = null
+    private lateinit var gridLayoutManager: GridLayoutManager
+
+    private val gridDecoration: RecyclerView.ItemDecoration by lazy {
+        GridSpacingItemDecoration(
+            SPAN_COUNT, resources.getDimension(R.dimen.margin_grid).toInt()
+        )
+    }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -88,7 +102,9 @@ class FirstFragment : BaseFragment() {
 
     private fun configureRecyclerView(view: View, list: List<Movie> = emptyList()){
         view.recyclerView.setHasFixedSize(true)
-        view.recyclerView.layoutManager = GridLayoutManager(context, 2)
+        gridLayoutManager = GridLayoutManager(context, SPAN_COUNT)
+        view.recyclerView.addItemDecoration(gridDecoration)
+        view.recyclerView.layoutManager = gridLayoutManager
 
         adapter = RecyclerViewAdapter(list){ movie ->
             viewModel.selectedMovie.value=movie

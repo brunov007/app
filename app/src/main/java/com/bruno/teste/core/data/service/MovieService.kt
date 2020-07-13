@@ -7,19 +7,22 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieService {
 
-    @Headers(
-        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjczZDU4OGU4NGYwYTE4YWVkNGQyMTNhZjgyZjM0MSIsInN1YiI6IjVjY2I0MTdkOTI1MTQxMDQ4MTI1YjdhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VwqlC2O02JCS0RtI9gJhlR4f8eJDnT0AFxKnckSHJRo"
-    )
+    companion object {
+        const val LANGUAGE = "pt-BR"
+        const val TOKEN = "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjczZDU4OGU4NGYwYTE4YWVkNGQyMTNhZjgyZjM0MSIsInN1YiI6IjVjY2I0MTdkOTI1MTQxMDQ4MTI1YjdhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VwqlC2O02JCS0RtI9gJhlR4f8eJDnT0AFxKnckSHJRo"
+    }
+
+    @Headers(TOKEN)
     @GET("movie/popular")
-    fun fetchMovies(): Observable<MoviesResponse>
+    fun fetchMovies(@Query("language") language : String = LANGUAGE): Observable<MoviesResponse>
 
 
-    @Headers(
-        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ZjczZDU4OGU4NGYwYTE4YWVkNGQyMTNhZjgyZjM0MSIsInN1YiI6IjVjY2I0MTdkOTI1MTQxMDQ4MTI1YjdhZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VwqlC2O02JCS0RtI9gJhlR4f8eJDnT0AFxKnckSHJRo"
-    )
+    @Headers(TOKEN)
     @GET("movie/{id}")
-    fun movieInfo(@Path("id") id: Int): Observable<MovieDetail>
+    fun movieInfo(@Path("id") id: Int,
+                  @Query("language") language : String = LANGUAGE): Observable<MovieDetail>
 }
