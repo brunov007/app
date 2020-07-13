@@ -11,7 +11,11 @@ import com.bruno.teste.core.data.repository.HomeRepositoryImpl
 
 class HomeViewModel(private val repository: HomeRepository = HomeRepositoryImpl()) : ViewModel(){
 
+    val listMovies = MutableLiveData<List<Movie>?>()
+
     val selectedMovie = MutableLiveData<Movie>()
+
+    val isLoading = MutableLiveData<Boolean>()
 
     fun getMoviesListService() : LiveData<List<Movie>?> {
         return repository.getMoviesList()
@@ -19,5 +23,13 @@ class HomeViewModel(private val repository: HomeRepository = HomeRepositoryImpl(
 
     fun getMovieDetails(id:Int) : LiveData<MovieDetail>{
         return repository.getMovieDetail(id)
+    }
+
+    fun showLoading(){
+        isLoading.value = true
+    }
+
+    fun hideLoading(){
+        isLoading.value = false
     }
 }

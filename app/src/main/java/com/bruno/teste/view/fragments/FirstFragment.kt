@@ -57,6 +57,19 @@ class FirstFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
 
+        if(!viewModel.isLoading.hasObservers()){
+            viewModel.isLoading.observe(viewLifecycleOwner,
+                Observer {
+                    if(it)
+                        requireView().progressBar.visibility = View.VISIBLE
+                    else
+                        requireView().progressBar.visibility = View.INVISIBLE
+                }
+            )
+        }
+
+        viewModel.showLoading()
+
         /* USE THIS ONLY TO MOCK DATA
         if(ApplicationProperties.get(ApplicationPropertiesEnum.MOCK_ENABLED).toBoolean()){
             val mockResult = AndroidUtils.readRawFileString(context,R.raw.movies, "UTF-8")
@@ -84,6 +97,9 @@ class FirstFragment : BaseFragment() {
         if(!viewModel.getMoviesListService().hasObservers()){
             viewModel.getMoviesListService().observe(viewLifecycleOwner,
                 Observer { list ->
+
+                    viewModel.hideLoading()
+
                     list?.let {
 
                         val modelDAO = TB_Movie()

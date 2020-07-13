@@ -13,6 +13,7 @@ import com.bruno.teste.core.ui.BaseFragment
 import com.bruno.teste.viewmodel.HomeViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
+import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_second.view.*
 import kotlin.math.roundToInt
 
@@ -33,11 +34,26 @@ class SecondFragment : BaseFragment() {
 
         viewModel = ViewModelProviders.of(requireActivity()).get(HomeViewModel::class.java)
 
+        viewModel.isLoading.observe(viewLifecycleOwner,
+            Observer {
+                if(it)
+                    requireView().progressBar_movie_Info.visibility = View.VISIBLE
+                else
+                    requireView().progressBar_movie_Info.visibility = View.INVISIBLE
+            }
+        )
+
         viewModel.selectedMovie.observe( viewLifecycleOwner,
             Observer { movie ->
+
+                viewModel.showLoading()
+
                 viewModel.getMovieDetails(movie.id).observe(viewLifecycleOwner, Observer { it ->
+
+                    viewModel.hideLoading()
+
                     view.titulo_info.text = it.original_title
-                    view.duracao_info.text = "Duração: ${it.runtime.roundToInt()} minutos"
+                    view.duracao_info.text = "Duração: ${it.runtime.roundToInt()} min"
                     view.sinopse_info.text = it.overview
                     try{
                         val IMAGEURL = "https://image.tmdb.org/t/p/w185"
