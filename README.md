@@ -1,5 +1,7 @@
 # Desafio Aplicativo Indra
 
+Prazo: 3 dias.
+
 ## Propósito
 Aplicativo para exibir filmes da API themoviedb.org.
 Onde deverá ser exibido uma lista de filmes mais populares provida pela API https://developers.themoviedb.org/3.
@@ -31,4 +33,13 @@ Não são obrigatórios, mas seria legal ter no seu projeto:
 - Jetpack Library
 - Arquitetura MVVM
 - Navigation Component
+
+### Considerações
+Dependencias utilizadas
+    * Retrofit 2 (Biblioteca de HTTP Client para Android)
+    * Lifecycle-viewmodel (Gerenciador de dados relacionados à IU considerando o ciclo de vida)
+    * Navigation-ui (Navegação entre telas em um aplicativo)
+    * Espresso (Realizar testes automatizados)
+    * Sugar (Persistência de dados no aplicativo)
+    * Glide (Gerenciador de mídia e carregar imagens da internet)
 
