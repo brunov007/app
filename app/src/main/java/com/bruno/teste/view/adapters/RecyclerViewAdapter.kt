@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bruno.teste.R
 import com.bruno.teste.core.data.models.Movie
+import com.bruno.teste.core.utils.EspressoIdlingResource
 import kotlinx.android.synthetic.main.cell.view.*
 import java.lang.Exception
 import com.bumptech.glide.Glide
@@ -52,6 +53,7 @@ class RecyclerViewAdapter(private var list: List<Movie> = emptyList(), private v
     fun setMovieList(movieList: List<Movie>){
         list = movieList
         notifyDataSetChanged()
+        EspressoIdlingResource.decrement()
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

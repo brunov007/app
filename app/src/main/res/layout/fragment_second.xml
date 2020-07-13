@@ -15,107 +15,113 @@
         android:layout_alignParentTop="true"
         android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="wrap_content">
 
-            android:clickable="false"
-            android:checkable="false">
-            
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <RelativeLayout
+                android:clickable="false"
+                android:checkable="false">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp">
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/titulo_info"
-                        android:layout_centerInParent="true"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="25sp"
-                        android:textAppearance="?attr/textAppearanceHeadline6"/>
-
-                </RelativeLayout>
-
-                <ImageView
-                    android:id="@+id/image_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:scaleType="fitCenter"/>
-
-                <ScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="10dp">
-                        <TextView
-                            android:id="@+id/duracao_info"
-                            android:textSize="13sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
+                        android:layout_marginBottom="10dp">
 
                         <TextView
-                            android:textSize="20sp"
+                            android:id="@+id/titulo_info"
+                            android:layout_centerInParent="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:text="Sinopse"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="#000"
-                            />
+                            android:textSize="25sp"
+                            android:textAppearance="?attr/textAppearanceHeadline6"/>
 
-                        <TextView
-                            android:textSize="18sp"
-                            android:id="@+id/sinopse_info"
-                            android:layout_width="wrap_content"
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/image_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        android:scaleType="fitCenter"/>
+
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary"
-                            />
+                            android:orientation="vertical"
+                            android:padding="10dp">
+                            <TextView
+                                android:id="@+id/duracao_info"
+                                android:textSize="13sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="?android:attr/textColorSecondary"
+                                />
 
-                        <TextView
-                            android:textSize="18sp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Gêneros"
-                            android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="#000"
-                            />
+                            <TextView
+                                android:textSize="20sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="Sinopse"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="#000"
+                                />
 
-                        <com.google.android.material.chip.ChipGroup
-                            android:id="@+id/chipsPrograms"
-                            style="@style/Widget.MaterialComponents.Chip.Entry"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:chipSpacing="8dp"
-                            app:singleSelection="false">
+                            <TextView
+                                android:textSize="18sp"
+                                android:id="@+id/sinopse_info"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="?android:attr/textColorSecondary"
+                                />
 
-                        </com.google.android.material.chip.ChipGroup>
+                            <TextView
+                                android:textSize="18sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:text="Gêneros"
+                                android:textAppearance="?attr/textAppearanceBody2"
+                                android:textColor="#000"
+                                />
 
-                    </LinearLayout>
+                            <com.google.android.material.chip.ChipGroup
+                                android:id="@+id/chipsPrograms"
+                                style="@style/Widget.MaterialComponents.Chip.Entry"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:chipSpacing="8dp"
+                                app:singleSelection="false">
 
-                </ScrollView>
+                            </com.google.android.material.chip.ChipGroup>
 
-            </LinearLayout>
+                        </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+                    </ScrollView>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </ScrollView>
     </LinearLayout>
 </RelativeLayout>

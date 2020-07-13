@@ -3,9 +3,9 @@ package com.bruno.teste.core.data.repository
 import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.bruno.teste.core.CustomApplication
 import com.bruno.teste.core.data.models.Movie
 import com.bruno.teste.core.data.models.MovieDetail
+import com.bruno.teste.core.data.service.MovieFactory
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -16,7 +16,7 @@ class HomeRepositoryImpl : HomeRepository{
     override fun getMoviesList(): LiveData<List<Movie>?> {
         val data = MutableLiveData<List<Movie>>()
 
-        val service = CustomApplication.getMovieService()
+        val service = MovieFactory().create()
 
         service.fetchMovies()
             .subscribeOn(Schedulers.io())
@@ -26,8 +26,6 @@ class HomeRepositoryImpl : HomeRepository{
                     //TODO
             })
 
-        data.value = emptyList()
-
         return data
     }
 
@@ -35,7 +33,7 @@ class HomeRepositoryImpl : HomeRepository{
     override fun getMovieDetail(id: Int): LiveData<MovieDetail> {
         val data = MutableLiveData<MovieDetail>()
 
-        val service = CustomApplication.getMovieService()
+        val service = MovieFactory().create()
 
         service.movieInfo(id)
             .subscribeOn(Schedulers.io())

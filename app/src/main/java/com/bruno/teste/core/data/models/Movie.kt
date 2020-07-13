@@ -2,7 +2,7 @@ package com.bruno.teste.core.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie (
+data class Movie(
     @SerializedName("popularity")
     var popularity: Float,
 
