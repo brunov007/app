@@ -88,7 +88,7 @@ class FirstFragment : BaseFragment() {
 
     private fun configureRecyclerView(view: View, list: List<Movie> = emptyList()){
         view.recyclerView.setHasFixedSize(true)
-        view.recyclerView.layoutManager = GridLayoutManager(context, 3)
+        view.recyclerView.layoutManager = GridLayoutManager(context, 2)
 
         adapter = RecyclerViewAdapter(list){ movie ->
             viewModel.selectedMovie.value=movie
