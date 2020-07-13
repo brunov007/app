@@ -2,10 +2,10 @@ package com.bruno.teste.view.fragments
 
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bruno.teste.R
@@ -13,7 +13,6 @@ import com.bruno.teste.core.ui.BaseFragment
 import com.bruno.teste.viewmodel.HomeViewModel
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
-import kotlinx.android.synthetic.main.fragment_first.view.*
 import kotlinx.android.synthetic.main.fragment_second.view.*
 import kotlin.math.roundToInt
 
@@ -34,12 +33,24 @@ class SecondFragment : BaseFragment() {
 
         viewModel = ViewModelProviders.of(requireActivity()).get(HomeViewModel::class.java)
 
+        viewModel.errorResponse.observe(viewLifecycleOwner,
+            Observer {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                viewModel.hideLoading()
+            })
+
         viewModel.isLoading.observe(viewLifecycleOwner,
             Observer {
-                if(it)
+
+                //Controle de tela
+                if(it){
+                    requireView().card.visibility = View.INVISIBLE
                     requireView().progressBar_movie_Info.visibility = View.VISIBLE
-                else
+                }
+                else {
+                    requireView().card.visibility = View.VISIBLE
                     requireView().progressBar_movie_Info.visibility = View.INVISIBLE
+                }
             }
         )
 

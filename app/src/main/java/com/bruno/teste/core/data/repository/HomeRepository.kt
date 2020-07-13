@@ -6,7 +6,7 @@ import com.bruno.teste.core.data.models.MovieDetail
 
 interface HomeRepository {
 
-    fun getMoviesList() : LiveData<List<Movie>?>
+    fun getMoviesList(responseError: (e : String) -> Unit) : LiveData<List<Movie>?>
 
-    fun getMovieDetail(id: Int) : LiveData<MovieDetail>
+    fun getMovieDetail(id: Int, responseError: (e : String) -> Unit) : LiveData<MovieDetail>
 }

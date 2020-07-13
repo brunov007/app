@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -22,6 +23,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.orm.SugarRecord
 import kotlinx.android.synthetic.main.fragment_first.view.*
+import kotlinx.android.synthetic.main.fragment_second.view.*
 import kotlin.collections.List
 
 
@@ -57,16 +59,21 @@ class FirstFragment : BaseFragment() {
     override fun onStart() {
         super.onStart()
 
-        if(!viewModel.isLoading.hasObservers()){
-            viewModel.isLoading.observe(viewLifecycleOwner,
-                Observer {
-                    if(it)
-                        requireView().progressBar.visibility = View.VISIBLE
-                    else
-                        requireView().progressBar.visibility = View.INVISIBLE
+        viewModel.errorResponse.observe(viewLifecycleOwner,
+        Observer {
+            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            viewModel.hideLoading()
+        })
+
+        viewModel.isLoading.observe(viewLifecycleOwner,
+            Observer {
+                if(it){
+                    requireView().progressBar.visibility = View.VISIBLE
+                }else{
+                    requireView().progressBar.visibility = View.INVISIBLE
                 }
-            )
-        }
+            }
+        )
 
         viewModel.showLoading()
 
@@ -94,25 +101,23 @@ class FirstFragment : BaseFragment() {
             if (adapter == null) configureRecyclerView(requireView(), movieList) else adapter!!.setMovieList(movieList)
         }
 
-        if(!viewModel.getMoviesListService().hasObservers()){
-            viewModel.getMoviesListService().observe(viewLifecycleOwner,
-                Observer { list ->
+        viewModel.getMoviesListService().observe(viewLifecycleOwner,
+            Observer { list ->
 
-                    viewModel.hideLoading()
+                viewModel.hideLoading()
 
-                    list?.let {
+                list?.let {
 
-                        val modelDAO = TB_Movie()
-                        modelDAO.list = Gson().toJson(it)
-                        modelDAO.save()
+                    val modelDAO = TB_Movie()
+                    modelDAO.list = Gson().toJson(it)
+                    modelDAO.save()
 
-                        if (adapter == null) configureRecyclerView(requireView(), list) else adapter!!.setMovieList(list)
+                    if (adapter == null) configureRecyclerView(requireView(), list) else adapter!!.setMovieList(list)
 
-                        EspressoIdlingResource.decrement()
-                    }
+                    EspressoIdlingResource.decrement()
                 }
-            )
-        }
+            }
+        )
     }
 
 
